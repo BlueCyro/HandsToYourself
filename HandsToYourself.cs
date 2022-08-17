@@ -49,13 +49,14 @@ public class HandsToYourself : NeosMod
     {
         public static void Postfix(UserRoot __instance)
         {
-            if (__instance.ActiveUser == __instance.LocalUser)
-            {
-                __instance.RunInUpdates(3, () => {
+            __instance.RunInUpdates(3, () => {
+                if (__instance.ActiveUser == __instance.LocalUser)
+                {
                     LocomotionGrip grip = __instance.Slot.AttachComponent<LocomotionGrip>();
-                    grip.Enabled = Config!.GetValue<bool>(GrabEnabled);
-                });
-            }
+                    grip.Enabled = Config!.GetValue<bool>(GrabEnabled);    
+                }
+            });
+            
         }
     }
 }
